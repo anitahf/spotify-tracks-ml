@@ -1,0 +1,32 @@
+{
+    "model_name": "HistGradientBoostingClassifier",
+    "dataset": "spotify_model_dataset.csv",
+    "train_validation_rows": 76270,
+    "test_rows": 13460,
+    "numeric_features": [
+        "duration_ms",
+        "explicit",
+        "danceability",
+        "energy",
+        "key",
+        "loudness",
+        "mode",
+        "speechiness",
+        "acousticness",
+        "instrumentalness",
+        "liveness",
+        "valence",
+        "tempo",
+        "time_signature",
+        "rhythm_missing",
+        "energy_tempo",
+        "is_long_track"
+    ],
+    "genre_features_count": 114,
+    "total_model_features": 131,
+    "threshold_balanced": 0.55,
+    "threshold_discovery": 0.35,
+    "test_roc_auc": 0.8698197024202823,
+    "test_pr_auc": 0.686026368567539,
+    "random_state": 42
+}

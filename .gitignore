@@ -1,0 +1,7 @@
+# MLflow: base local y artefactos internos
+mlflow.db
+mlartifacts/
+mlruns/
+
+# Archivos temporales de Jupyter
+.ipynb_checkpoints/
