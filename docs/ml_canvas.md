@@ -237,3 +237,81 @@ Probabilidad de popularidad
 Selección de umbral
       ↓
 Lista priorizada para revisión A&R
+
+## 15. Riesgos, fairness y evaluación ética
+
+La evaluación de fairness se realizó sobre el conjunto de test mediante dos enfoques:
+
+1. Evaluación individual por género musical.
+2. Comparación agrupada entre segmentos Mainstream y Latino / emergente.
+
+Los resultados se interpretan como un **riesgo de cobertura del modelo**. No representan evidencia automática de discriminación, ya que los grupos corresponden a segmentos musicales y presentan tasas base de popularidad distintas.
+
+### Fairness por género individual
+
+Se evaluaron 76 géneros con soporte suficiente.
+
+Para evitar métricas inestables, se consideraron únicamente géneros con:
+
+- Al menos 100 canciones.
+- Al menos 20 canciones populares reales.
+
+La estrategia de descubrimiento puede reducir el F1-score en algunos géneros, porque prioriza recall y acepta más falsos positivos.
+
+| Género | Cambio de F1 con estrategia de descubrimiento |
+|---|---:|
+| hardcore | -11.66 puntos porcentuales |
+| show-tunes | -11.43 puntos porcentuales |
+| folk | -9.84 puntos porcentuales |
+| swedish | -9.25 puntos porcentuales |
+| j-rock | -8.82 puntos porcentuales |
+
+### Fairness agrupado: Mainstream vs. Latino / emergente
+
+Los grupos se construyeron únicamente con géneros disponibles en el dataset.
+
+| Grupo | Géneros incluidos |
+|---|---|
+| Mainstream | `pop`, `edm`, `hip-hop`, `rock` |
+| Latino / emergente | `afrobeat`, `indie`, `latino`, `reggaeton`, `salsa` |
+
+Se excluyeron 56 canciones presentes en ambos grupos para evitar superposición.
+
+| Grupo | Canciones | Populares reales |
+|---|---:|---:|
+| Mainstream | 521 | 246 |
+| Latino / emergente | 563 | 91 |
+
+### Resultados con estrategia equilibrada
+
+| Grupo | Tasa de predicción positiva | Precision | Recall | F1-score |
+|---|---:|---:|---:|---:|
+| Mainstream | 66.41% | 66.18% | 93.09% | 77.36% |
+| Latino / emergente | 23.09% | 47.69% | 68.13% | 56.11% |
+
+### Resultados con estrategia de descubrimiento
+
+| Grupo | Tasa de predicción positiva | Precision | Recall | F1-score |
+|---|---:|---:|---:|---:|
+| Mainstream | 82.34% | 56.64% | 98.78% | 72.00% |
+| Latino / emergente | 34.81% | 37.24% | 80.22% | 50.87% |
+
+### Brechas de fairness
+
+| Estrategia | Brecha precision | Brecha recall | Brecha F1-score | Brecha tasa de predicción positiva |
+|---|---:|---:|---:|---:|
+| Equilibrada — 0.55 | +18.49 pp | +24.96 pp | +21.26 pp | +43.32 pp |
+| Descubrimiento — 0.35 | +19.40 pp | +18.56 pp | +21.13 pp | +47.53 pp |
+
+Ambas estrategias presentan una brecha de recall superior a 10 puntos porcentuales.
+
+La estrategia de descubrimiento reduce la brecha de recall de 24.96 pp a 18.56 pp, pero todavía mantiene una diferencia relevante entre grupos.
+
+### Medidas de mitigación
+
+- Mantener revisión humana obligatoria antes de invertir, descartar o promover una canción.
+- Monitorear precision, recall y F1-score por género y grupo musical en cada nueva versión.
+- Revisar manualmente canciones Latino / emergente con probabilidades cercanas al umbral.
+- Incorporar mayor representación histórica de géneros con menor desempeño.
+- No utilizar el modelo como criterio único de inversión, contratación o exclusión.
+- Usar la estrategia de descubrimiento únicamente cuando exista capacidad adicional de revisión humana.
