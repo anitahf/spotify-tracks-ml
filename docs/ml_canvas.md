@@ -237,6 +237,7 @@ Probabilidad de popularidad
 Selección de umbral
       ↓
 Lista priorizada para revisión A&R
+```text
 
 ## 15. Riesgos, fairness y evaluación ética
 
