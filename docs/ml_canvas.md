@@ -223,7 +223,7 @@ Los valores económicos son académicos e ilustrativos; no representan ingresos 
 
 ## 14. Integración propuesta
 
-```text
+
 Nueva canción
       ↓
 Extracción de audio features y género
@@ -237,7 +237,10 @@ Probabilidad de popularidad
 Selección de umbral
       ↓
 Lista priorizada para revisión A&R
-```text
+
+
+---
+
 
 ## 15. Riesgos, fairness y evaluación ética
 
